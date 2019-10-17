@@ -1,11 +1,25 @@
+require('dotenv').config();
+
 const expres=require('express');
+
+const cors=require('cors');
+const bodyParser=require('body-parser');
+const handle=require('./handlers')
+const routes =require('./routes'); 
+
 
 const app=expres();
 
-const handle=require('./handlers')
-app.get('/',(req,res)=>res.send('helloworld'));
+const db=require('./models')
 
-const port= 4000;
+app.use(cors());
+app.use(bodyParser.json()); 
+app.get('/',(req,res)=>res.send('helloworld'));
+app.use('/api/auth',routes.auth); 
+
+
+const port= process.env.PORT;
+
 
 app.use(handle.notfound);
 
