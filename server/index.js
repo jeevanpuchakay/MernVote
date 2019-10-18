@@ -16,9 +16,10 @@ app.use(cors());
 app.use(bodyParser.json()); 
 app.get('/',(req,res)=>res.send('helloworld'));
 app.use('/api/auth',routes.auth); 
-
+app.use('/api/poll',routes.poll);
 
 const port= process.env.PORT;
+
 
 
 app.use(handle.notfound);
